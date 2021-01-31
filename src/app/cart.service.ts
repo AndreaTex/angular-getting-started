@@ -1,23 +1,27 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class CartService {
-
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
   items = [];
 
-  addToCart(product){
+  addToCart(product) {
     this.items.push(product);
   }
 
-  getItems(){
+  getItems() {
     return this.items;
   }
 
-  clearCart(){
+  clearCart() {
     this.items = [];
     return this.items;
   }
 
+  getShippingPrice() {
+    console.log(this.http.get("/assets/shipping.json"));
+    return this.http.get("/assets/shipping.json");
+  }
 }
